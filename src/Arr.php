@@ -4,23 +4,23 @@ namespace marciojc;
 
 class Arr
 {
-	/**
-	 * Add an element to an array.
-	 *
-	 * @param  array   $array
-	 * @param  string  $key
-	 * @param  mixed   $value
-	 * @return array
-	 */
-	public static function add($array, $key, $value)
-	{
-		if (is_null(static::get($array, $key))) {
-			static::set($array, $key, $value);
-		}
-		return $array;
-	}
+    /**
+     * Add an element to an array.
+     *
+     * @param  array   $array
+     * @param  string  $key
+     * @param  mixed   $value
+     * @return array
+     */
+    public static function add($array, $key, $value)
+    {
+        if (is_null(static::get($array, $key))) {
+            static::set($array, $key, $value);
+        }
+        return $array;
+    }
 
-	/**
+    /**
      * Get an item from an array.
      *
      * @param  array  $array

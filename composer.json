@@ -2,7 +2,20 @@
     "name": "marciojc/arr",
     "description": "Provides PHP helpers",
     "require": {
-        "php": "^7.1"
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "files": [
+            "src/Arr.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "license": "MIT",
     "authors": [
