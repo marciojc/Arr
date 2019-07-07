@@ -1,0 +1,15 @@
+{
+    "name": "marciojc/arr",
+    "description": "Provides PHP helpers",
+    "require": {
+        "php": "^7.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "marciojc",
+            "email": "468890+marciojc@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
