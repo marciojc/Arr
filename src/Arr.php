@@ -52,4 +52,15 @@ class Arr
     {
         return array_key_exists($key, $array);
     }
+
+    /**
+     * Get the length of an array.
+     *
+     * @param  array  $array
+     * @return int
+     */
+    public static function length($array)
+    {
+        return count($array);
+    }
 }

@@ -15,7 +15,7 @@ class ArrTest extends TestCase
     public function setUp()
     {
         $this->array = array();
-        for ($i=0; $i <= 1000; $i++) {
+        for ($i=0; $i < 1000; $i++) {
             $this->array[] = $i;
         }
     }
@@ -36,5 +36,11 @@ class ArrTest extends TestCase
     {
         $array = Arr::add($this->array, 404, 0);
         $this->assertContains(404, $this->array);
+    }
+
+    public function testLength()
+    {
+        $size = Arr::length($this->array);
+        $this->assertEquals($size, 1000);
     }
 }
