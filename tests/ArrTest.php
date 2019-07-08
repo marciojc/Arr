@@ -50,4 +50,15 @@ class ArrTest extends TestCase
         $filtered = Arr::filter($this->array, 'even');
         $this->assertEquals($filtered, array(0 => 0, 2 => 2, 4 => 4, 6 => 6, 8 => 8));
     }
+
+    public function testFind()
+    {
+        function evenGreatTen($item, $index)
+        {
+            return $item % 2 === 0 && $index >= 10;
+        };
+
+        $item = Arr::find($this->array, 'evenGreatTen');
+        $this->assertEquals($item, 10);
+    }
 }

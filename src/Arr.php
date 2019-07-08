@@ -75,4 +75,32 @@ class Arr
     {
         return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
     }
+
+    /**
+     * Returns the value of the first element using the given callback.
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return mixed|null
+     */
+    public static function find($array, callable $callback)
+    {
+        $found = false;
+        $i = 0;
+        $total = count($array);
+        $result = null;
+
+        while (!$found && $i < $total) {
+            $item = $array[$i];
+
+            if ($callback($item, $i)) {
+                $result = $item;
+                $found = true;
+            }
+
+            $i++;
+        }
+
+        return $result;
+    }
 }
