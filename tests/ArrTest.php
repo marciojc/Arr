@@ -4,10 +4,6 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use marciojc\Arr;
 
-/**
- * We don't accept new tests because the behavior is already tested
- * for the class equivalents in the laravel/framework repository.
- */
 class ArrTest extends TestCase
 {
     private $array;
@@ -42,5 +38,16 @@ class ArrTest extends TestCase
     {
         $size = Arr::length($this->array);
         $this->assertEquals($size, 1000);
+    }
+
+    public function testFilter()
+    {
+        function even($item, $index)
+        {
+            return $item % 2 === 0 && $index < 10;
+        };
+
+        $filtered = Arr::filter($this->array, 'even');
+        $this->assertEquals($filtered, array(0 => 0, 2 => 2, 4 => 4, 6 => 6, 8 => 8));
     }
 }
