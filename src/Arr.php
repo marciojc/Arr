@@ -103,4 +103,32 @@ class Arr
 
         return $result;
     }
+
+    /**
+     * Flat a multi-dimensional array into a single level.
+     *
+     * @param  array  $array
+     * @param  int  $depth
+     * @return array
+     */
+
+    public static function flat($array, $depth = INF)
+    {
+        $result = [];
+
+        foreach ($array as $item) {
+            if (! is_array($item)) {
+                $result[] = $item;
+            } else {
+                $values = $depth === 1
+                    ? array_values($item)
+                    : static::flat($item, $depth - 1);
+                foreach ($values as $value) {
+                    $result[] = $value;
+                }
+            }
+        }
+
+        return $result;
+    }
 }

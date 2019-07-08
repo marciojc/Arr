@@ -61,4 +61,14 @@ class ArrTest extends TestCase
         $item = Arr::find($this->array, 'evenGreatTen');
         $this->assertEquals($item, 10);
     }
+
+    public function testFlat()
+    {
+        $multiArray = [1, 2, [3, 4, [5, 6]]];
+        $multiArray2 = [1, 2, [3, 4, [5, 6]]];
+        $flattedArray = Arr::flat($multiArray, 1);
+        $flattedArray2 = Arr::flat($multiArray2);
+        $this->assertEquals($flattedArray, [1, 2, 3, 4, [5, 6]]);
+        $this->assertEquals($flattedArray2, [1, 2, 3, 4, 5, 6]);
+    }
 }
