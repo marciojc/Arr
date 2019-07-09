@@ -71,4 +71,12 @@ class ArrTest extends TestCase
         $this->assertEquals($flattedArray, [1, 2, 3, 4, [5, 6]]);
         $this->assertEquals($flattedArray2, [1, 2, 3, 4, 5, 6]);
     }
+
+    public function testConcat()
+    {
+        $array1 = [1, 2];
+        $array2 = [3, 4];
+        $concatArray = Arr::concat($array1, $array2);
+        $this->assertEquals($concatArray, [1, 2, 3, 4]);
+    }
 }

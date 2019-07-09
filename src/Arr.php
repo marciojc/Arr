@@ -111,7 +111,6 @@ class Arr
      * @param  int  $depth
      * @return array
      */
-
     public static function flat($array, $depth = INF)
     {
         $result = [];
@@ -130,5 +129,17 @@ class Arr
         }
 
         return $result;
+    }
+
+    /**
+     * Merge two arrays
+     *
+     * @param  array1  $array
+     * @param  array2  $array
+     * @return array
+     */
+    public static function concat($array1, $array2)
+    {
+        return array_merge($array1, $array2);
     }
 }
