@@ -83,22 +83,28 @@ class Arr
      * @param  callable  $callback
      * @return mixed|null
      */
-    public static function find($array, callable $callback)
+    public static function find($array, callable $callback = null, $default = null)
     {
         $found = false;
         $i = 0;
         $total = count($array);
-        $result = null;
+        $result = $default;
 
-        while (!$found && $i < $total) {
-            $item = $array[$i];
-
-            if ($callback($item, $i)) {
-                $result = $item;
-                $found = true;
+        if (is_null($callback)) {
+            if (!empty($array)) {
+                $result = $array[0];
             }
+        } else {
+            while (!$found && $i < $total) {
+                $item = $array[$i];
 
-            $i++;
+                if (call_user_func($callback, $item, $i)) {
+                    $result = $item;
+                    $found = true;
+                }
+
+                $i++;
+            }
         }
 
         return $result;

@@ -62,6 +62,18 @@ class ArrTest extends TestCase
         $this->assertEquals($item, 10);
     }
 
+    public function testFindWithoutCallback()
+    {
+        $item = Arr::find($this->array, null);
+        $this->assertEquals($item, 0);
+    }
+
+    public function testFindWithoutArray()
+    {
+        $item = Arr::find([], null, 10);
+        $this->assertEquals($item, 10);
+    }
+
     public function testFlat()
     {
         $multiArray = [1, 2, [3, 4, [5, 6]]];
