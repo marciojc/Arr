@@ -92,7 +92,8 @@ class ArrTest extends TestCase
         $this->assertEquals($concatArray, [1, 2, 3, 4]);
     }
 
-    public function testFlatMap() {
+    public function testFlatMap()
+    {
         function double($item)
         {
             return $item * 2;
@@ -103,13 +104,34 @@ class ArrTest extends TestCase
         $this->assertEquals($newArray, [2, 4, 6, 8, 10, 12]);
     }
 
-    public function testWrap() {
+    public function testWrap()
+    {
         $array = Arr::wrap([1]);
         $this->assertEquals($array, [1]);
     }
 
-    public function testWrapValue() {
+    public function testWrapValue()
+    {
         $array = Arr::wrap(1);
         $this->assertEquals($array, [1]);
+    }
+
+    public function testEvery()
+    {
+        function isEven($item)
+        {
+            return $item % 2 == 0;
+        };
+
+        $array = [2, 4];
+        $result = Arr::every($array, 'isEven');
+        $this->assertEquals($result, true);
+    }
+
+    public function testEveryFalse()
+    {
+        $array = [2, 3];
+        $result = Arr::every($array, 'isEven');
+        $this->assertEquals($result, false);
     }
 }

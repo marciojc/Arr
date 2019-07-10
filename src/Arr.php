@@ -158,7 +158,7 @@ class Arr
      */
     public static function flatMap($array, callable $callback)
     {
-       return array_map($callback, self::flat($array));
+        return array_map($callback, self::flat($array));
     }
 
     /**
@@ -173,5 +173,27 @@ class Arr
             return [];
         }
         return is_array($value) ? $value : [$value];
+    }
+
+    /**
+     * Verify if all elments in the array pass the test implemented by the provided function
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return boolean
+     */
+    public static function every($array, callable $callback)
+    {
+        if (!is_array($array)) {
+            return false;
+        }
+
+        $result = true;
+
+        foreach ($array as $key => $value) {
+            $result = $result && call_user_func($callback, $value, $key);
+        }
+
+        return $result;
     }
 }
