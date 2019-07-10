@@ -168,4 +168,11 @@ class ArrTest extends TestCase
         $result = Arr::contains($array, 'Contains');
         $this->assertEquals($result, false);
     }
+
+    public function testForget()
+    {
+        $array = ['contains', 'test'];
+        Arr::forget($array, 'test');
+        $this->assertEquals($array, ['contains']);
+    }
 }

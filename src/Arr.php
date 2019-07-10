@@ -125,10 +125,10 @@ class Arr
                 $result = $array[0];
             }
         } else {
-            $index = self::findIndex($array, $callback);
+            $key = self::findIndex($array, $callback);
 
-            if ($index > -1) {
-                $result = $array[$index];
+            if ($key > -1) {
+                $result = $array[$key];
             }
         }
 
@@ -236,9 +236,9 @@ class Arr
         }
 
         $result = false;
-        $index = self::findIndex($array, $callback);
+        $key = self::findIndex($array, $callback);
 
-        if ($index > -1) {
+        if ($key > -1) {
             $result = true;
         }
 
@@ -255,5 +255,26 @@ class Arr
     public static function contains($array, $value)
     {
         return in_array($value, $array);
+    }
+
+    /**
+     * Remove one item from a given array.
+     *
+     * @param  array  $array
+     * @param  string  $key
+     * @return void
+     */
+    public static function forget(&$array, $value)
+    {
+        $original = &$array;
+        $key = self::findIndex($array, function($item, $index) use ($value) {
+            if ($item === $value) {
+                return $index;
+            }
+        });
+
+        if ($key > -1) {
+            unset($array[$key]);
+        }
     }
 }
