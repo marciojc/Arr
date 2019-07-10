@@ -148,4 +148,15 @@ class Arr
     {
         return array_merge($array1, $array2);
     }
+
+    /**
+     * Map an array and flatten the result by a single level.
+     *
+     * @param  callable  $callback
+     * @return static
+     */
+    public static function flatMap($array, callable $callback)
+    {
+       return array_map($callback, self::flat($array));
+    }
 }

@@ -91,4 +91,15 @@ class ArrTest extends TestCase
         $concatArray = Arr::concat($array1, $array2);
         $this->assertEquals($concatArray, [1, 2, 3, 4]);
     }
+
+    public function testFlatMap() {
+        function double($item)
+        {
+            return $item * 2;
+        };
+
+        $multiArray = [1, 2, [3, 4, [5, 6]]];
+        $newArray = Arr::flatMap($multiArray, 'double');
+        $this->assertEquals($newArray, [2, 4, 6, 8, 10, 12]);
+    }
 }
