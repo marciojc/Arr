@@ -196,4 +196,16 @@ class Arr
 
         return $result;
     }
+
+    /**
+     * Verify if an array includes a certain value
+     *
+     * @param  array  $array
+     * @param  string  $value
+     * @return boolean
+     */
+    public static function contains($array, $value)
+    {
+        return in_array($value, $array);
+    }
 }
