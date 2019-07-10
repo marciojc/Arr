@@ -77,6 +77,36 @@ class Arr
     }
 
     /**
+     * Returns the index of the first element using the given callback.
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return mixed|null
+     */
+    public static function findIndex($array, callable $callback = null)
+    {
+        $found = false;
+        $i = 0;
+        $total = count($array);
+        $result = -1;
+
+        if (!is_null($callback) and !empty($array)) {
+            while (!$found && $i < $total) {
+                $item = $array[$i];
+
+                if (call_user_func($callback, $item, $i)) {
+                    $result = $i;
+                    $found = true;
+                }
+
+                $i++;
+            }
+        }
+
+        return $result;
+    }
+
+    /**
      * Returns the value of the first element using the given callback.
      *
      * @param  array  $array
@@ -95,15 +125,10 @@ class Arr
                 $result = $array[0];
             }
         } else {
-            while (!$found && $i < $total) {
-                $item = $array[$i];
+            $index = self::findIndex($array, $callback);
 
-                if (call_user_func($callback, $item, $i)) {
-                    $result = $item;
-                    $found = true;
-                }
-
-                $i++;
+            if ($index > -1) {
+                $result = $array[$index];
             }
         }
 
