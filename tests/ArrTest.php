@@ -102,4 +102,14 @@ class ArrTest extends TestCase
         $newArray = Arr::flatMap($multiArray, 'double');
         $this->assertEquals($newArray, [2, 4, 6, 8, 10, 12]);
     }
+
+    public function testWrap() {
+        $array = Arr::wrap([1]);
+        $this->assertEquals($array, [1]);
+    }
+
+    public function testWrapValue() {
+        $array = Arr::wrap(1);
+        $this->assertEquals($array, [1]);
+    }
 }

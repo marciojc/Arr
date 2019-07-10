@@ -152,11 +152,26 @@ class Arr
     /**
      * Map an array and flatten the result by a single level.
      *
+     * @param  array  $array
      * @param  callable  $callback
-     * @return static
+     * @return array
      */
     public static function flatMap($array, callable $callback)
     {
        return array_map($callback, self::flat($array));
+    }
+
+    /**
+     * If the given value is not an array and not null, wrap it in one.
+     *
+     * @param  mixed  $value
+     * @return array
+     */
+    public static function wrap($value)
+    {
+        if (is_null($value)) {
+            return [];
+        }
+        return is_array($value) ? $value : [$value];
     }
 }
