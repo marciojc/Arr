@@ -141,6 +141,20 @@ class ArrTest extends TestCase
         $this->assertEquals($result, false);
     }
 
+    public function testSome()
+    {
+        $array = [1, 2, 4];
+        $result = Arr::some($array, 'isEven');
+        $this->assertEquals($result, true);
+    }
+
+    public function testSomeFalse()
+    {
+        $array = [1, 3];
+        $result = Arr::every($array, 'isEven');
+        $this->assertEquals($result, false);
+    }
+
     public function testContains()
     {
         $array = ['contains', 'test'];

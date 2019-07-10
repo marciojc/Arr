@@ -223,6 +223,29 @@ class Arr
     }
 
     /**
+     * Verify if some elment in the array pass the test implemented by the provided function
+     *
+     * @param  array  $array
+     * @param  callable  $callback
+     * @return boolean
+     */
+    public static function some($array, callable $callback)
+    {
+        if (!is_array($array)) {
+            return false;
+        }
+
+        $result = false;
+        $index = self::findIndex($array, $callback);
+
+        if ($index > -1) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    /**
      * Verify if an array includes a certain value
      *
      * @param  array  $array
