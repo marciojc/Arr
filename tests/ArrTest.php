@@ -16,6 +16,14 @@ class ArrTest extends TestCase
         }
     }
 
+    public function testDot()
+    {
+        $array = ['products' => ['desk' => ['price' => 100]]];
+        $flattened = Arr::dot($array);
+
+        $this->assertEquals($flattened, array('products.desk.price' => 100));
+    }
+
     public function testExists()
     {
         $exist = Arr::exists($this->array, 5);
