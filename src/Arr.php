@@ -41,7 +41,7 @@ class Arr
     }
 
     /**
-     * Add an element to an array.
+     * Add an element to an array using "dot" notation if it doesn't exist.
      *
      * @param  array   $array
      * @param  string  $key
@@ -57,15 +57,19 @@ class Arr
     }
 
     /**
-     * Get an item from an array.
+     * Get an item from an array using "dot" notation.
      *
-     * @param  array  $array
-     * @param  int  $key
+     * @param  \ArrayAccess|array  $array
+     * @param  string|int  $key
      * @param  mixed  $default
      * @return mixed
      */
     public static function get($array, $key, $default = null)
     {
+        if (! static::accessible($array)) {
+            return $default;
+        }
+
         if (is_null($key)) {
             return $array;
         }
