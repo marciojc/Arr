@@ -16,6 +16,13 @@ class ArrTest extends TestCase
         }
     }
 
+    public function testAccessible()
+    {
+        $array = ['products' => ['desk' => ['price' => 100]]];
+
+        $this->assertTrue(Arr::accessible($array));
+    }
+
     public function testDot()
     {
         $array = ['products' => ['desk' => ['price' => 100]]];

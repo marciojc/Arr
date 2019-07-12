@@ -2,8 +2,21 @@
 
 namespace marciojc;
 
+use ArrayAccess;
+
 class Arr
 {
+
+    /**
+     * Determine whether the given value is array accessible.
+     *
+     * @param  mixed  $value
+     * @return bool
+     */
+    public static function accessible($value)
+    {
+        return is_array($value) || $value instanceof ArrayAccess;
+    }
 
     /**
      * Flatten a multi-dimensional associative array with dots.
@@ -62,6 +75,41 @@ class Arr
         }
 
         return $array;
+    }
+
+    /**
+     * Check if an item or items exist in an array using "dot" notation.
+     *
+     * @param  array  $array
+     * @param  string|array  $keys
+     * @return bool
+     */
+    public static function has($array, $keys)
+    {
+        $keys = (array) $keys;
+
+        if (! $array || $keys === []) {
+            return false;
+        }
+
+        foreach ($keys as $key) {
+            $subKeyArray = $array;
+
+            if (static::exists($array, $key)) {
+                continue;
+            }
+
+            foreach (explode('.', $key) as $segment) {
+                if (static::accessible($subKeyArray)
+                    && static::exists($subKeyArray, $segment)
+                ) {
+                    $subKeyArray = $subKeyArray[$segment];
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -290,7 +338,7 @@ class Arr
     public static function forget(&$array, $value)
     {
         $original = &$array;
-        $key = self::findIndex($array, function($item, $index) use ($value) {
+        $key = self::findIndex($array, function ($item, $index) use ($value) {
             if ($item === $value) {
                 return $index;
             }
