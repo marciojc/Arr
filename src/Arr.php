@@ -4,6 +4,13 @@ namespace marciojc;
 
 use ArrayAccess;
 
+/**
+ * Arr class
+ *
+ * Note: Adapted from Illuminate\Support\Arr.
+ *
+ * @see https://github.com/laravel/framework/blob/5.8/LICENSE.md
+ */
 class Arr
 {
 
